@@ -16,7 +16,7 @@ const Routes = () => {
   return (
     <ReactRoutes>
       <Route path='/' element={<MainPage />} />
-      <Route path='/games/time' element={<TimeGamePage />} />
+      <Route path='/games/time/:id' element={<TimeGamePage />} />
       <Route path='/games/result' element={<TimeGameResultPage />} />
       <Route path='/create' element={<CreatePage />} />
       <Route path='/login' element={<LoginPage />} />

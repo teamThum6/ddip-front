@@ -1,11 +1,19 @@
 import Spacing from 'layouts/Spacing'
 import style from './GameItem.module.css'
 import classNames from 'classnames'
+import { useNavigate } from 'react-router-dom'
 
 function GameItem({ el }: any) {
+  const navigate = useNavigate()
+
   const width = (document.body.clientWidth - 56 - 16) / 2
 
   const imageHeight = width * 0.76
+
+  const gameTypeFilter = (gameType: any) => {
+    if (gameType === 2) return 'sharon'
+    if (gameType === 4) return 'time'
+  }
 
   return (
     <li
@@ -13,6 +21,9 @@ function GameItem({ el }: any) {
         width,
       }}
       className={classNames('rounded-[25px] overflow-hidden', style.shadow)}
+      onClick={() => {
+        navigate(`/games/${gameTypeFilter(el.game_type)}/${el.product_key}`)
+      }}
     >
       <div
         style={{
