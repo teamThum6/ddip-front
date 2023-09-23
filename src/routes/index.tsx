@@ -6,6 +6,7 @@ import LocationSelectionPage from 'pages/LocationSelectionPage'
 import TimeGamePage from 'pages/TimeGamePage'
 import SuccessPage from 'pages/SuccessPage'
 import FailurePage from 'pages/FailurePage'
+import ColorGame from 'pages/ColorGame'
 
 const Routes = () => {
   return (
@@ -19,6 +20,7 @@ const Routes = () => {
       />
       <Route path='/results/success' element={<SuccessPage />} />
       <Route path='/results/failure' element={<FailurePage />} />
+      <Route path='/games/color-block' element={<ColorGame />} />
     </ReactRoutes>
   )
 }

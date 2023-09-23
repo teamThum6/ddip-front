@@ -1,3 +1,5 @@
-export interface User {
-  profile: any
+export interface profileInfo {
+  name: string
+  score: number
+  profileImg: string
 }
