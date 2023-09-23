@@ -11,8 +11,8 @@ function GameItem({ el }: any) {
   const imageHeight = width * 0.76
 
   const gameTypeFilter = (gameType: any) => {
-    if (gameType === 2) return 'sharon'
-    if (gameType === 4) return 'time'
+    if (gameType === 1) return 'sharon'
+    if (gameType === 3) return 'time'
   }
   const categoryTypeFilter = (gameType: any) => {
     if (gameType === 1) return '음식'
@@ -33,7 +33,7 @@ function GameItem({ el }: any) {
         style.shadow
       )}
       onClick={() => {
-        if (el.game_type === 4 || el.game_type === 2) {
+        if (el.game_type === 1 || el.game_type === 3) {
           return navigate(
             `/games/${gameTypeFilter(el.game_type)}/${el.product_key}`
           )
