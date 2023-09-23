@@ -221,11 +221,11 @@ const CreatePage = () => {
         <div
           className='flex text-brand'
           onClick={() => {
-            setGameType(1)
+            setGameType(0)
           }}
         >
           <div className='rounded-[50%] border-brand border border-solid w-[14px] h-[14px] mr-2 inline-flex justify-center items-center'>
-            {gameType === 1 && (
+            {gameType === 0 && (
               <div className='rounded-[50%] w-[5px] h-[5px] bg-brand' />
             )}
           </div>
