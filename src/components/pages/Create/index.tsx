@@ -38,7 +38,7 @@ function convertTimeToISOString(inputTime: string): string {
   currentDate.setSeconds(0)
   currentDate.setMilliseconds(0)
 
-  const isoString = currentDate.toISOString()
+  const isoString = currentDate.toISOString().replace('Z', '')
 
   return isoString
 }
