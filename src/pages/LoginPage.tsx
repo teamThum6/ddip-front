@@ -1,7 +1,28 @@
 import Header from 'components/common/Header'
 import Spacing from 'layouts/Spacing'
 
+import KakaoLogin from 'react-kakao-login'
+
 function LoginPage() {
+  function handleSuccess(response: {
+    response: KakaoResponse
+    profile?: KakaoUserProfile
+  }) {
+    const { profile } = response
+
+    if (profile) {
+      const { id, properties } = profile
+
+      const { nickname, profile_image } = properties
+
+      console.log(id, nickname, profile_image)
+    }
+  }
+
+  function handleFail() {
+    //
+  }
+
   return (
     <main>
       <Header title='로그인' color='#000' backgroundColor='bg-white' />
@@ -22,11 +43,21 @@ function LoginPage() {
           로그인을 해서 원하는 것을 가져보세요!
         </p>
         <Spacing size={76} />
-        <button className='bg-[#FFF000] w-full h-[44px] rounded-[32px] flex items-center justify-center'>
-          <img src='/assets/kakao.svg' alt='' />
-          <Spacing size={5} />
-          <p className='color-black font-semibold'>카카오톡 로그인</p>
-        </button>
+        <KakaoLogin
+          token={process.env.REACT_APP_KAKAO_JS_KEY as string}
+          onSuccess={handleSuccess}
+          onFail={handleFail}
+          render={({ onClick }) => (
+            <button
+              onClick={onClick}
+              className='bg-[#FFF000] w-full h-[44px] rounded-[32px] flex items-center justify-center'
+            >
+              <img src='/assets/kakao.svg' alt='' />
+              <Spacing size={5} />
+              <p className='color-black font-semibold'>카카오톡 로그인</p>
+            </button>
+          )}
+        />
       </div>
     </main>
   )
