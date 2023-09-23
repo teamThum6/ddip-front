@@ -1,9 +1,13 @@
+import axios from 'axios'
 import Header from 'components/common/Header'
 import Spacing from 'layouts/Spacing'
 
 import KakaoLogin from 'react-kakao-login'
+import { useNavigate } from 'react-router-dom'
 
 function LoginPage() {
+  const navigate = useNavigate()
+
   function handleSuccess(response: {
     response: KakaoResponse
     profile?: KakaoUserProfile
@@ -15,7 +19,21 @@ function LoginPage() {
 
       const { nickname, profile_image } = properties
 
-      console.log(id, nickname, profile_image)
+      axios
+        .post<{
+          access_token: string
+        }>('http://13.125.131.81/api/v1/auth/login/kakao', {
+          id,
+          nickname,
+          profile_url: profile_image ?? null,
+        })
+        .then((res) => {
+          localStorage.setItem('token', res.data.access_token)
+
+          navigate('/', {
+            replace: true,
+          })
+        })
     }
   }
 
