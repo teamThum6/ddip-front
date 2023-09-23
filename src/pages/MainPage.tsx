@@ -13,7 +13,7 @@ const MainPage = () => {
 
   return (
     <>
-      <div className='relative pt-[46px] pb-[109px] overflow-hidden'>
+      <div className='relative pt-[23px] pb-[109px] overflow-hidden'>
         <Ellipse />
         <TopRow />
         <Spacing size={15} />
