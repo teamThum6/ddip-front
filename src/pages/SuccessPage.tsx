@@ -4,7 +4,7 @@ import Success from 'components/pages/Results/Success'
 const SuccessPage = () => {
   return (
     <>
-      <Header title='' color='#3A3A3A' backgroundColor='bg-white' />
+      <Header title='' color='white' backgroundColor='bg-[#FF595F]' />
       <Success />
     </>
   )

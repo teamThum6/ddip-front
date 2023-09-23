@@ -1,5 +1,5 @@
 const Failure = () => {
-  return <div></div>
+  return <div className=' h-screen bg-[#FF595F]'>dsa</div>
 }
 
 export default Failure
