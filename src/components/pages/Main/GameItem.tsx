@@ -2,7 +2,7 @@ import Spacing from 'layouts/Spacing'
 import style from './GameItem.module.css'
 import classNames from 'classnames'
 
-function GameItem() {
+function GameItem({ el }: any) {
   const width = (document.body.clientWidth - 56 - 16) / 2
 
   const imageHeight = width * 0.76
@@ -24,7 +24,7 @@ function GameItem() {
       </div>
       <div className='py-[7px] px-[14px] bg-white'>
         <p className={style.category}>음식</p>
-        <p className={style.title}>팔도 도시락</p>
+        <p className={style.title}>{el.title}</p>
 
         <Spacing size={20} />
 
@@ -32,12 +32,18 @@ function GameItem() {
           <div className='flex items-center'>
             <img src='/assets/people.svg' alt='' />
             <Spacing size={4} />
-            <p className={style.people}>3/5</p>
+            <p className={style.people}>3/{el.max_participants}</p>
           </div>
           <div className='flex items-center'>
             <img src='/assets/time_12x12_gray.svg' alt='' />
             <Spacing size={4} />
-            <p className={style.time}>1분 전</p>
+            <p className={style.time}>
+              {Math.floor(
+                (new Date().getTime() - new Date(el.created_at).getTime()) /
+                  (1000 * 60)
+              )}
+              분 전
+            </p>
           </div>
         </div>
       </div>

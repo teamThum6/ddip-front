@@ -26,3 +26,7 @@ export async function createProduct({
     is_valid: true,
   })
 }
+
+export async function fetchProductList() {
+  return await customAxios.get<null, any>('/api/v1/product/list')
+}
