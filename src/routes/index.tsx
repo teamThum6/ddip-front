@@ -3,6 +3,7 @@ import { Route, Routes as ReactRoutes } from 'react-router-dom'
 import MainPage from 'pages/MainPage'
 import CreatePage from 'pages/CreatePage'
 import LocationSelectionPage from 'pages/LocationSelectionPage'
+import LoginPage from 'pages/LoginPage'
 import SharonGamePage from 'pages/SharonGamePage'
 import SharonGameResultPage from 'pages/SharonGameResultPage'
 import TimeGamePage from 'pages/TimeGamePage'
@@ -20,6 +21,7 @@ const Routes = () => {
         path='/create/location-selection'
         element={<LocationSelectionPage />}
       />
+      <Route path='/login' element={<LoginPage />} />
       <Route path='/games/sharon/:id' element={<SharonGamePage />} />
       <Route
         path='/games/sharon/:id/result'
