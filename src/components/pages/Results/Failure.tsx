@@ -3,7 +3,7 @@ import Section from 'components/pages/Results/Section'
 const Failure = () => {
   return (
     <div className='bg-[#D4D4D4] text-center'>
-      <div className='rounded-[50%] bg-[#FFE8E3] h-[143px] w-[143px] bg-opacity-60 inline-flex justify-center items-center mb-7'>
+      <div className='rounded-[50%] bg-[#3A3A3A] h-[143px] w-[143px] bg-opacity-60 inline-flex justify-center items-center mb-7'>
         <img src='/assets/ddip-bad.png' alt='' className=' w-24 h-24' />
       </div>
       <div className=' text-xl font-semibold text-[#3A3A3A] mb-[30px]'>
