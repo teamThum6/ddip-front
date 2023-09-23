@@ -1,14 +1,13 @@
-import Axios, { AxiosResponse } from 'axios'
+import Axios, { AxiosInstance } from 'axios'
 
-export const createApi = () => {
-  const _customAxios = Axios.create({
-    baseURL: 'https://59ae-112-216-150-166.ngrok-free.app',
-    validateStatus: (status) => status >= 200 && status < 400,
+export const createApi = (): AxiosInstance => {
+  const customAxios = Axios.create({
+    baseURL: 'http://13.125.131.81',
   })
 
-  _customAxios.interceptors.response.use(
+  customAxios.interceptors.response.use(
     (response) => {
-      return Promise.resolve(response.data) as unknown as AxiosResponse
+      return Promise.resolve(response.data)
     },
 
     async (error) => {
@@ -16,11 +15,15 @@ export const createApi = () => {
     }
   )
 
-  _customAxios.interceptors.request.use((config) => {
+  const token = ''
+
+  customAxios.interceptors.request.use((config) => {
+    config.headers['Authorization'] = `Bearer ${token}`
+
     return config
   })
 
-  return _customAxios
+  return customAxios
 }
 
 const customAxios = createApi()

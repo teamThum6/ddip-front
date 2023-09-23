@@ -12,7 +12,7 @@ export async function createProduct({
   maxParticipants,
   location,
 }: any) {
-  return await customAxios.post<null, any>('/api/v1/product', {
+  return await customAxios.post<null, any>('/api/v1/product/', {
     title,
     category_key: categoryType,
     description,
