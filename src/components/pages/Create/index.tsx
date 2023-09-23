@@ -205,13 +205,13 @@ const CreatePage = () => {
         </Link>
       </Section>
       <Section title='게임 방식'>
-        <div className='flex text-brand'>
-          <div
-            className='rounded-[50%] border-brand border border-solid w-[14px] h-[14px] mr-2 inline-flex justify-center items-center'
-            onClick={() => {
-              setGameType(1)
-            }}
-          >
+        <div
+          className='flex text-brand'
+          onClick={() => {
+            setGameType(1)
+          }}
+        >
+          <div className='rounded-[50%] border-brand border border-solid w-[14px] h-[14px] mr-2 inline-flex justify-center items-center'>
             {gameType === 1 && (
               <div className='rounded-[50%] w-[5px] h-[5px] bg-brand' />
             )}
