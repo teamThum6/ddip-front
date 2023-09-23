@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-.scroll::-webkit-scrollbar {
-  display: none;
+* {
+  font-family: 'Suit', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #f8f8f8;
+  .scroll::-webkit-scrollbar {
+    display: none;
+  }
 }
