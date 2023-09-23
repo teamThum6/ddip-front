@@ -43,7 +43,7 @@ const KakaoMap = ({ setLocationName }: KakaoMapProps) => {
       <div
         ref={mapRef}
         id='map'
-        className='w-[calc(100%+48px)] h-[calc(100vh-100px)] ml-[-24px]'
+        className='w-[calc(100%+48px)] h-[calc(100vh-160px)] ml-[-24px]'
       />
       <img
         className=' absolute z-10 left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2'
