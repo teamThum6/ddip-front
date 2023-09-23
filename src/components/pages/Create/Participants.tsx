@@ -17,8 +17,10 @@ const Participants = ({ setParticipant, participant }: ParticipantsProps) => {
       {[1, 2, 3, 4, 5].map((el, index) => (
         <div
           key={index}
-          className={`w-6 h-6 text-black rounded-[50%] inline-flex justify-center items-center cursor-pointer ${
-            participant[index] ? ' bg-brand' : 'bg-[#D9D9D9]'
+          className={`w-6 h-6 rounded-[50%] inline-flex justify-center items-center cursor-pointer ${
+            participant[index]
+              ? ' bg-brand text-white'
+              : 'bg-[#D9D9D9] text-black'
           }`}
           onClick={() => participantHandler(index)}
         >
