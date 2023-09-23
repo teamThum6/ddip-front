@@ -1,0 +1,9 @@
+.gradient {
+  @apply absolute bottom-0 left-0 right-0;
+  height: 154px;
+  background: linear-gradient(
+    to bottom,
+    rgba(217, 217, 217, 0),
+    rgba(255, 89, 95, 1)
+  );
+}

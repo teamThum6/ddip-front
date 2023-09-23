@@ -1,0 +1,10 @@
+.circle {
+  @apply w-[68px] h-[68px] rounded-full fixed bottom-[21px] right-[21px] flex flex-col items-center justify-center pt-1;
+  background-color: #3a3a3a;
+  transition: all 0.21s;
+  box-shadow: 0px 4px 10px rgba(119, 119, 119, 0.25);
+}
+
+.circle:active {
+  transform: scale(0.95);
+}
