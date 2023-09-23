@@ -1,9 +1,13 @@
+import axios from 'axios'
 import Header from 'components/common/Header'
 import Spacing from 'layouts/Spacing'
 
 import KakaoLogin from 'react-kakao-login'
+import { useNavigate } from 'react-router-dom'
 
 function LoginPage() {
+  const navigate = useNavigate()
+
   function handleSuccess(response: {
     response: KakaoResponse
     profile?: KakaoUserProfile
@@ -15,7 +19,21 @@ function LoginPage() {
 
       const { nickname, profile_image } = properties
 
-      console.log(id, nickname, profile_image)
+      axios
+        .post<{
+          access_token: string
+        }>('http://13.125.131.81/api/v1/auth/login/kakao', {
+          id,
+          nickname,
+          profile_url: profile_image ?? null,
+        })
+        .then((res) => {
+          localStorage.setItem('token', res.data.access_token)
+
+          navigate('/', {
+            replace: true,
+          })
+        })
     }
   }
 
@@ -35,7 +53,11 @@ function LoginPage() {
       >
         <img src='/assets/DDip_red.svg' alt='' />
         <Spacing size={19} />
-        <p className='text-brand font-bold text-[32px]'>문구 문구 문구</p>
+        <p className='text-brand font-bold text-[24px] text-center leading-[29px]'>
+          나눠주는 사람은 즐겁게!
+          <br />
+          갖고 싶은 사람은 치열하게!
+        </p>
         <Spacing size={12} />
         <p className='text-[#C9C9C9] text-[13px] font-medium text-center leading-4'>
           띱의 회원이 되어주세요.
