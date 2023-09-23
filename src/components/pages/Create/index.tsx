@@ -209,7 +209,7 @@ const CreatePage = () => {
       </Section>
       <Section title='거래 희망 장소'>
         <div
-          className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'
+          className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50 cursor-pointer'
           onClick={() => {
             setShowModal(true)
           }}
