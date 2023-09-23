@@ -10,6 +10,7 @@ import ImageUploadBox from 'components/pages/Create/ImageUploadBox'
 
 const CreatePage = () => {
   const locationName = useRecoilValue(locationNameState)
+  const [gameType, setGameType] = useState(1)
   const [imgFile, setImgFile] = useState<File | null>(null)
   const [participant, setParticipant] = useState([
     false,
@@ -51,12 +52,21 @@ const CreatePage = () => {
       </Section>
       <Section title='게임 방식'>
         <div className='flex text-brand'>
-          <div className='rounded-[50%] border-brand border border-solid w-[14px] h-[14px] mr-2' />
+          <div
+            className='rounded-[50%] border-brand border border-solid w-[14px] h-[14px] mr-2 inline-flex justify-center items-center'
+            onClick={() => {
+              setGameType(1)
+            }}
+          >
+            {gameType === 1 && (
+              <div className='rounded-[50%] w-[5px] h-[5px] bg-brand' />
+            )}
+          </div>
           선착순
         </div>
         <div className='w-full h-2' />
         <div className='overflow-y-auto scroll'>
-          <GameList />
+          <GameList setGameType={setGameType} gameType={gameType} />
         </div>
       </Section>
       <Section title='게임 참여 인원'>
