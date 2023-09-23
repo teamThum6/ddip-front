@@ -28,6 +28,8 @@ const MainPage = () => {
         </Carousel>
         <Spacing size={33} />
         <div className='px-[28px]'>
+          <p className='pl-[7px] text-[18px] font-semibold'>카테고리</p>
+          <Spacing size={10} />
           <CategorySelect
             value={selectedCategory}
             onChange={setSelectedCategory}

@@ -29,8 +29,6 @@ function CategorySelect({ value, onChange, children }: Props) {
         onChange,
       }}
     >
-      <p className='pl-[7px] text-[18px] font-semibold'>카테고리</p>
-      <Spacing size={10} />
       <div className='flex flex-wrap gap-x-[10px] gap-y-[6px]'>{children}</div>
     </CategorySelectContext.Provider>
   )
