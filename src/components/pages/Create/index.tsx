@@ -1,19 +1,24 @@
+import { useState } from 'react'
+
 import GameList from 'components/pages/Create/GameList'
 import Section from 'components/pages/Create/Section'
 import Participants from 'components/pages/Create/Participants'
+import ImageUploadBox from 'components/pages/Create/ImageUploadBox'
 
 const CreatePage = () => {
+  const [imgFile, setImgFile] = useState<File | null>(null)
+  const [participant, setParticipant] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ])
+
   return (
     <div className=' space-y-3'>
       <Section title='사진 등록'>
-        <div className='w-[177px] border border-solid border-[#3A3A3A] py-5 flex rounded-lg justify-center items-center text-[#3A3A3A] opacity-50'>
-          <img
-            className='mr-4 font-medium text-[#3A3A3A]'
-            src='/assets/icons/photo.svg'
-            alt='사진 등록'
-          />
-          + 사진 등록
-        </div>
+        <ImageUploadBox setImgFile={setImgFile} />
       </Section>
       <Section title='제목'>
         <input
@@ -49,7 +54,10 @@ const CreatePage = () => {
         </div>
       </Section>
       <Section title='게임 참여 인원'>
-        <Participants />
+        <Participants
+          setParticipant={setParticipant}
+          participant={participant}
+        />
       </Section>
       <div className='w-full h-28' />
       <button className='fixed bottom-0 py-4 bg-brand text-white w-full max-w-[390px] ml-[-24px]'>

@@ -1,14 +1,15 @@
-import { useState } from 'react'
+interface ParticipantsProps {
+  setParticipant: React.Dispatch<React.SetStateAction<boolean[]>>
+  participant: boolean[]
+}
 
-const Participants = () => {
-  const [score, setScore] = useState([false, false, false, false, false])
-
-  const starScore = (index: number) => {
-    let star = [...score]
+const Participants = ({ setParticipant, participant }: ParticipantsProps) => {
+  const participantHandler = (index: number) => {
+    let star = [...participant]
     for (let i = 0; i < 5; i++) {
       star[i] = i <= index ? true : false
     }
-    setScore(star)
+    setParticipant(star)
   }
 
   return (
@@ -17,9 +18,9 @@ const Participants = () => {
         <div
           key={index}
           className={`w-6 h-6 text-black rounded-[50%] inline-flex justify-center items-center cursor-pointer ${
-            score[index] ? ' bg-brand' : 'bg-[#D9D9D9]'
+            participant[index] ? ' bg-brand' : 'bg-[#D9D9D9]'
           }`}
-          onClick={() => starScore(index)}
+          onClick={() => participantHandler(index)}
         >
           {el}
         </div>
