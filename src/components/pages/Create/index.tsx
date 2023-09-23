@@ -21,7 +21,7 @@ const CreatePage = () => {
   ])
 
   return (
-    <div className=' space-y-3'>
+    <div className=' space-y-3  px-6'>
       <Section title='사진 등록'>
         <ImageUploadBox setImgFile={setImgFile} />
       </Section>

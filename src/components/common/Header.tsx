@@ -14,7 +14,7 @@ const Header = ({ title, color, backgroundColor }: HeaderProps) => {
   return (
     <>
       <header
-        className={`fixed top-0 w-full max-w-[390px] ml-[-24px] px-6 py-4 flex justify-between z-10 ${backgroundColor}`}
+        className={`fixed top-0 w-full max-w-[390px] ml-[-24px] px-6 py-4 flex justify-between z-10 ${backgroundColor} left-6`}
       >
         <BackIcon fill={color} onClick={() => navigate(-1)} />
         <div className=' text-xl font-semibold'>{title}</div>
