@@ -30,3 +30,7 @@ export async function createProduct({
 export async function fetchProductList() {
   return await customAxios.get<null, any>('/api/v1/product/list')
 }
+
+export async function fetchProductDetail(id: string) {
+  return await customAxios.get<null, any>(`/api/v1/product/${id}`)
+}
