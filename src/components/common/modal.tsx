@@ -1,16 +1,48 @@
-import React from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { Fragment } from 'react'
 
 interface ModalProps {
-  active: boolean
+  showModal: boolean
   children: React.ReactNode
+  closeModal: () => void
 }
 
-export default function Modal({ active, children }: ModalProps) {
-  return active ? (
-    <div className='w-full h-full absolute blur-sm top-0 left-0 right-0 bottom-0'>
-      <div className='flex flex-col justify-center w-40 border p-5 border-solid border-black items-center rounded-md gap-3 z-20'>
-        {children}
-      </div>
-    </div>
-  ) : null
+export default function Modal({ showModal, children, closeModal }: ModalProps) {
+  return (
+    <>
+      <Transition appear show={showModal} as={Fragment}>
+        <Dialog as='div' className='relative z-10 ' onClose={closeModal}>
+          <Transition.Child
+            as={Fragment}
+            enter='ease-out duration-300'
+            enterFrom='opacity-0'
+            enterTo='opacity-100'
+            leave='ease-in duration-200'
+            leaveFrom='opacity-100'
+            leaveTo='opacity-0'
+          >
+            <div className='fixed inset-0 bg-black bg-opacity-25' />
+          </Transition.Child>
+
+          <div className='fixed inset-0 overflow-y-auto'>
+            <div className='flex min-h-full items-center justify-center p-4 text-center'>
+              <Transition.Child
+                as={Fragment}
+                enter='ease-out duration-300'
+                enterFrom='opacity-0 scale-95'
+                enterTo='opacity-100 scale-100'
+                leave='ease-in duration-200'
+                leaveFrom='opacity-100 scale-100'
+                leaveTo='opacity-0 scale-95'
+              >
+                <Dialog.Panel className='max-w-[400px] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all'>
+                  {children}
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+    </>
+  )
 }

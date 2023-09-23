@@ -1,7 +1,7 @@
 import { useState, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
-import { Link } from 'react-router-dom'
 import { Listbox, Transition } from '@headlessui/react'
+import { useRecoilState } from 'recoil'
 
 import * as productApi from 'apis/product'
 import { locationNameState, latLongState } from 'store/location'
@@ -10,6 +10,8 @@ import Section from 'components/pages/Create/Section'
 import Participants from 'components/pages/Create/Participants'
 import ImageUploadBox from 'components/pages/Create/ImageUploadBox'
 import CategorySelect from 'components/pages/Main/CategorySelect'
+import Modal from 'components/common/modal'
+import KakaoMap from 'components/common/KakaoMap'
 
 const people = [
   { name: '10:00' },
@@ -46,11 +48,11 @@ const CreatePage = () => {
   const [description, setDescription] = useState('')
   const [categoryType, setCategoryType] = useState<number>()
   const location = useRecoilValue(locationNameState)
-  const latLong = useRecoilValue(latLongState)
   const [gameType, setGameType] = useState(1)
   const [imgFile, setImgFile] = useState<File | null>(null)
   const [startTime, setStartTime] = useState(people[0])
   const [endTime, setEndTime] = useState(people[1])
+  const [showModal, setShowModal] = useState(false)
   const [participant, setParticipant] = useState([
     false,
     false,
@@ -58,7 +60,11 @@ const CreatePage = () => {
     false,
     false,
   ])
+  const [locationName, setLocationName] = useRecoilState<null | string>(
+    locationNameState
+  )
 
+  const [latLong, setLatLong] = useRecoilState(latLongState)
   const { lat, long } = latLong
   const createProduct = async () => {
     await productApi.createProduct({
@@ -73,6 +79,10 @@ const CreatePage = () => {
       gameType,
       maxParticipants: participant.filter((el) => el).length,
     })
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
   }
 
   return (
@@ -198,11 +208,14 @@ const CreatePage = () => {
         </div>
       </Section>
       <Section title='거래 희망 장소'>
-        <Link to='/create/location-selection'>
-          <div className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'>
-            {location ? location : '위치추가'}
-          </div>
-        </Link>
+        <div
+          className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'
+          onClick={() => {
+            setShowModal(true)
+          }}
+        >
+          {location ? location : '위치추가'}
+        </div>
       </Section>
       <Section title='게임 방식'>
         <div
@@ -236,6 +249,28 @@ const CreatePage = () => {
       >
         생성하기
       </button>
+      <Modal showModal={showModal} closeModal={closeModal}>
+        <div className='w-full relative'>
+          <div className=' text-xl font-semibold'>
+            물건을 전달할 장소를 선택해주세요.
+          </div>
+          <div className='w-full h-2' />
+          <div className=' text-base font-normal'>
+            누구나 찾기 쉬운 공공장소가 좋아요.
+          </div>
+          <div className='w-full h-10' />
+          <KakaoMap setLocationName={setLocationName} setLatLong={setLatLong} />
+          <button
+            className={`${
+              locationName ? 'bg-red-400' : 'bg-gray-300'
+            } w-full z-10 py-2 text-center rounded-[10px] text-white font-semibold text-base mt-4 cursor-pointer`}
+            onClick={closeModal}
+            disabled={!locationName}
+          >
+            선택 완료
+          </button>
+        </div>
+      </Modal>
     </div>
   )
 }

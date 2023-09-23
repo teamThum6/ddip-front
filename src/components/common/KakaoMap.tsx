@@ -16,8 +16,11 @@ const KakaoMap = ({ setLocationName, setLatLong }: KakaoMapProps) => {
   useEffect(() => {
     const container = mapRef.current
     const options = {
-      center: new (window as any).kakao.maps.LatLng(37.566826, 126.978656),
-      level: 5,
+      center: new (window as any).kakao.maps.LatLng(
+        37.54549899860778,
+        126.9525527187483
+      ),
+      level: 3,
     }
 
     const map = new (window as any).kakao.maps.Map(container, options)
@@ -48,7 +51,7 @@ const KakaoMap = ({ setLocationName, setLatLong }: KakaoMapProps) => {
       <div
         ref={mapRef}
         id='map'
-        className='w-[calc(100%+48px)] h-[calc(100vh-200px)] ml-[-24px]'
+        className='w-[calc(100%+48px)] h-[calc(100vh-500px)] ml-[-24px]'
       />
       <img
         className=' absolute z-10 left-[50%] top-[50%] transform -translate-x-1/2 -translate-y-1/2'
