@@ -2,12 +2,14 @@ import { useRecoilState } from 'recoil'
 import { Link } from 'react-router-dom'
 
 import KakaoMap from 'components/common/KakaoMap'
-import { locationNameState } from 'store/location'
+import { locationNameState, latLongState } from 'store/location'
 
 const LocationSelection = () => {
   const [locationName, setLocationName] = useRecoilState<null | string>(
     locationNameState
   )
+
+  const [latLong, setLatLong] = useRecoilState(latLongState)
 
   return (
     <div className='w-full relative'>
@@ -19,7 +21,7 @@ const LocationSelection = () => {
         누구나 찾기 쉬운 공공장소가 좋아요.
       </div>
       <div className='w-full h-10' />
-      <KakaoMap setLocationName={setLocationName} />
+      <KakaoMap setLocationName={setLocationName} setLatLong={setLatLong} />
       {locationName && (
         <Link to='/create'>
           <button className='absolute bottom-[50px] bg-red-400 w-full z-10 py-4 text-center rounded-[10px] text-white font-semibold text-base'>

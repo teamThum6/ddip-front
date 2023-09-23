@@ -1,10 +1,15 @@
 import React, { useEffect, useRef } from 'react'
+import { SetterOrUpdater } from 'recoil'
 
 interface KakaoMapProps {
   setLocationName: React.Dispatch<React.SetStateAction<string | null>>
+  setLatLong: SetterOrUpdater<{
+    lat: number
+    long: number
+  }>
 }
 
-const KakaoMap = ({ setLocationName }: KakaoMapProps) => {
+const KakaoMap = ({ setLocationName, setLatLong }: KakaoMapProps) => {
   const mapRef = useRef<HTMLDivElement | null>(null)
   const mapInstanceRef = useRef<any>(null)
 
@@ -21,7 +26,7 @@ const KakaoMap = ({ setLocationName }: KakaoMapProps) => {
       const center = map.getCenter()
       const latitude = center.getLat()
       const longitude = center.getLng()
-
+      setLatLong({ lat: latitude, long: longitude })
       const geocoder = new (window as any).kakao.maps.services.Geocoder()
       geocoder.coord2Address(
         longitude,
