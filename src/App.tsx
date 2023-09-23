@@ -1,11 +1,15 @@
+import { RecoilRoot } from 'recoil'
+
 import Routes from 'routes'
 import DefaultLayout from 'layouts/DefaultLayout'
 
 const App = () => {
   return (
-    <DefaultLayout>
-      <Routes />
-    </DefaultLayout>
+    <RecoilRoot>
+      <DefaultLayout>
+        <Routes />
+      </DefaultLayout>
+    </RecoilRoot>
   )
 }
 
