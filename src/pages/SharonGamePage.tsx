@@ -1,14 +1,76 @@
 import Header from 'components/common/Header'
 import Track from 'components/pages/Sharon/Track'
 import Spacing from 'layouts/Spacing'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { Socket, connect } from 'socket.io-client'
 
 const ORANGE_COLOR = '#FFA800'
 
 const BIG_TEXT_CLASSNAME = `text-[${ORANGE_COLOR}] text-[24px] font-bold leading-[30px]`
 
+type User = {
+  step: number
+  id: string
+  uid: string
+}
+
+const gameId = '4'
+
 function SharonGamePage() {
-  const [step, setStep] = useState(0)
+  const $socket = useRef<Socket | null>(null)
+
+  const $uid = useRef<string>(new Date().valueOf().toString())
+
+  const [started, setStarted] = useState(false)
+
+  const [command, setCommand] = useState<string>('')
+
+  const [ended, setEnded] = useState<boolean>(false)
+
+  const [isDie, setIsDie] = useState<boolean>(false)
+
+  const [users, setUser] = useState<User[]>([])
+
+  const [mounted, setMounted] = useState(false)
+
+  function socketConnect() {
+    $socket.current = connect('http://13.239.29.240:8080/')
+
+    $socket.current!.on('sharon_member', (users: User[]) => {
+      setUser(users)
+    })
+
+    $socket.current!.on('sharon_start', () => {
+      setStarted(true)
+    })
+
+    $socket.current!.on('sharon_command', (command: string) => {
+      setCommand(command)
+    })
+
+    $socket.current!.on('sharon_ended', (winner: string) => {
+      console.log(winner)
+      if (winner === $uid.current) {
+        alert('당신이 이겼습니다!')
+      }
+      setEnded(true)
+    })
+
+    $socket.current!.on('sharon_die', (uid: string) => {
+      if (uid === $uid.current) setIsDie(true)
+    })
+
+    $socket.current!.emit('sharon_in', gameId, $uid.current)
+  }
+
+  useEffect(() => {
+    if (!mounted) {
+      setMounted(true)
+      return
+    } else {
+      socketConnect()
+    }
+  }, [mounted])
 
   return (
     <main className='h-[100vh] w-full bg-[#FFF8EA]'>
@@ -26,20 +88,28 @@ function SharonGamePage() {
         </div>
         <Spacing size={25} />
         <div className='bg-white flex items-center px-9 py-5 rounded-[10px] w-full'>
-          <p className={BIG_TEXT_CLASSNAME}>무궁화 꽃이...</p>
+          <p className={BIG_TEXT_CLASSNAME}>{command}</p>
         </div>
         <Spacing size={45} />
         <div className='flex justify-between'>
-          <Track step={0} maxStep={100} />
-          <Track step={0} maxStep={100} />
-          <Track step={0} maxStep={100} />
-          <Track step={0} maxStep={100} />
-          <Track isMe step={step} maxStep={100} />
+          {users.map((user) => (
+            <Track
+              isMe={user.uid === $uid.current}
+              step={user.step}
+              maxStep={100}
+            />
+          ))}
         </div>
         <Spacing size={50} />
         <button
-          onClick={() => setStep(Math.min(100, step + 1))}
-          className={`bg-[${ORANGE_COLOR}] w-full text-white text-[24px] font-bold rounded-[8px] py-[13px]`}
+          onClick={() => {
+            $socket.current!.emit('sharon_step', gameId)
+          }}
+          disabled={!started || ended || isDie}
+          className={`w-full text-white text-[24px] font-bold rounded-[8px] py-[13px]`}
+          style={{
+            background: ORANGE_COLOR,
+          }}
         >
           CLICK해서 움직이기
         </button>
