@@ -20,7 +20,6 @@ const TimeGamePage = () => {
   const dsa = new Date().toString()
 
   useEffect(() => {
-    console.log(id)
     ws.timer_in('timer_in', String(id), dsa)
   }, [])
 

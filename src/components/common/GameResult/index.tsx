@@ -102,8 +102,6 @@ function GameResult({ primeColor, onConfirm, children }: Props) {
     throw new Error('GameResult.RankArea 컴포넌트가 존재하지 않습니다.')
   }
 
-  console.log(safetyPrimeColor)
-
   return (
     <GameResultContext.Provider
       value={{

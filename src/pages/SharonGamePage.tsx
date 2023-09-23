@@ -49,7 +49,6 @@ function SharonGamePage() {
     })
 
     $socket.current!.on('sharon_ended', (winner: string) => {
-      console.log(winner)
       if (winner === $uid.current) {
         alert('당신이 이겼습니다!')
       }
