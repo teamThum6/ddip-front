@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import Header from 'components/common/Header'
 import TimeGame from 'components/pages/Games/TimeGame'
@@ -10,19 +10,25 @@ import { userListState } from 'store/user'
 const TimeGamePage = () => {
   const navigate = useNavigate()
 
+  const { id } = useParams()
+
   const [centiseconds, setCentiseconds] = useState(0)
   const [time, setTime] = useState(0)
   const [userList, setUserList] = useRecoilState(userListState)
+  const [isStart, setIsStart] = useState(false)
 
   const dsa = new Date().toString()
 
   useEffect(() => {
     console.log(1)
-    ws.timer_in('timer_in', '가', dsa)
+    ws.timer_in('timer_in', String(id), dsa)
   }, [])
 
   const loadTime = async () => {
     const dsa = await ws.timer_start()
+    if (dsa) {
+      setIsStart(true)
+    }
 
     setCentiseconds(Number(dsa) * 100)
     setTime(dsa)
@@ -47,6 +53,7 @@ const TimeGamePage = () => {
         centiseconds={centiseconds}
         setCentiseconds={setCentiseconds}
         time={time}
+        isStart={isStart}
       />
     </>
   )

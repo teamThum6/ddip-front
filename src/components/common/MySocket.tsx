@@ -23,7 +23,6 @@ class WebSocket {
   timer_start(): Promise<number> {
     return new Promise((resolve, reject) => {
       this.io?.on('timer_start', (targetTime: number) => {
-        console.log(42434442, targetTime)
         resolve(targetTime)
       })
     })
