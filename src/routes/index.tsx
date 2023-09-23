@@ -5,6 +5,7 @@ import CreatePage from 'pages/CreatePage'
 import LoginPage from 'pages/LoginPage'
 import SharonGamePage from 'pages/SharonGamePage'
 import SharonGameResultPage from 'pages/SharonGameResultPage'
+import TimeGameResultPage from 'pages/TimeGameResultPage'
 import TimeGamePage from 'pages/TimeGamePage'
 import SuccessPage from 'pages/SuccessPage'
 import FailurePage from 'pages/FailurePage'
@@ -15,6 +16,7 @@ const Routes = () => {
     <ReactRoutes>
       <Route path='/' element={<MainPage />} />
       <Route path='/games/time' element={<TimeGamePage />} />
+      <Route path='/games/result' element={<TimeGameResultPage />} />
       <Route path='/create' element={<CreatePage />} />
       <Route path='/login' element={<LoginPage />} />
       <Route path='/games/sharon/:id' element={<SharonGamePage />} />

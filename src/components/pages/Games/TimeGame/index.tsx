@@ -2,14 +2,14 @@ import { useState } from 'react'
 
 import useInterval from 'hooks/useInterval'
 import Countdown from 'components/pages/Games/Countdown'
+import ws from 'components/common/MySocket'
 
-const TimeGame = () => {
+const TimeGame = ({ centiseconds, setCentiseconds, time }: any) => {
   const [isRunning, setIsRunning] = useState(true)
-  const [centiseconds, setCentiseconds] = useState(1000)
 
   useInterval(() => {
     if (centiseconds >= 1 && isRunning) {
-      setCentiseconds((prevCentiseconds) => prevCentiseconds - 1)
+      setCentiseconds((prevCentiseconds: any) => prevCentiseconds - 1)
     }
   }, 10)
 
@@ -33,6 +33,10 @@ const TimeGame = () => {
     return seconds
   }
 
+  const done = () => {
+    alert('제출 되었습니다.')
+  }
+
   return (
     <div className='bg-[#FFE8E3] px-6 h-screen'>
       <div className='flex items-center mb-6'>
@@ -52,7 +56,7 @@ const TimeGame = () => {
         progress={formatProgress(centiseconds) * 10}
       />
       <div className='mb-[14px] text-2xl text-[#FF595F] text-center'>
-        목표 시간 : 10초
+        목표 시간 : {time}초
       </div>
       <div className=' bg-white py-4 text-[50px] rounded-[10px] font-bold text-[#FF595F] text-center mb-14'>
         {formatTime(centiseconds)}
@@ -63,6 +67,7 @@ const TimeGame = () => {
         }`}
         onClick={() => {
           setIsRunning(false)
+          ws.time_check('가', centiseconds, done as () => void)
         }}
       >
         {isRunning ? 'STOP' : '순위 집계중'}
