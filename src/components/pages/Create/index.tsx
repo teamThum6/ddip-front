@@ -2,6 +2,7 @@ import { useState, Fragment } from 'react'
 import { useRecoilValue } from 'recoil'
 import { Listbox, Transition } from '@headlessui/react'
 import { useRecoilState } from 'recoil'
+import { useNavigate } from 'react-router-dom'
 
 import * as productApi from 'apis/product'
 import { locationNameState, latLongState } from 'store/location'
@@ -44,6 +45,7 @@ function convertTimeToISOString(inputTime: string): string {
 }
 
 const CreatePage = () => {
+  const navigate = useNavigate()
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [categoryType, setCategoryType] = useState<number>()
@@ -67,18 +69,36 @@ const CreatePage = () => {
   const [latLong, setLatLong] = useRecoilState(latLongState)
   const { lat, long } = latLong
   const createProduct = async () => {
-    await productApi.createProduct({
-      title,
-      categoryType,
-      description,
-      location,
-      lat,
-      long,
-      startTime: convertTimeToISOString(startTime.name),
-      endTime: convertTimeToISOString(endTime.name),
-      gameType,
-      maxParticipants: participant.filter((el) => el).length,
-    })
+    if (
+      title &&
+      categoryType &&
+      description &&
+      location &&
+      lat &&
+      long &&
+      startTime &&
+      endTime &&
+      gameType &&
+      participant.filter((el) => el).length
+    ) {
+      const res = await productApi.createProduct({
+        title,
+        categoryType,
+        description,
+        location,
+        lat,
+        long,
+        startTime: convertTimeToISOString(startTime.name),
+        endTime: convertTimeToISOString(endTime.name),
+        gameType,
+        maxParticipants: participant.filter((el) => el).length,
+      })
+      if (res) {
+        navigate('/')
+      }
+    } else {
+      alert('입력값을 다시 확인 해주세요.')
+    }
   }
 
   const closeModal = () => {
