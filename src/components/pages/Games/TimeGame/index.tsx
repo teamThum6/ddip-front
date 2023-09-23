@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import useInterval from 'hooks/useInterval'
+import Countdown from 'components/pages/Games/Countdown'
 
 const TimeGame = () => {
   const [isRunning, setIsRunning] = useState(true)
@@ -46,20 +47,10 @@ const TimeGame = () => {
           버튼을 클릭하세요!
         </div>
       </div>
-      <div className=' bg-white py-4 px-4 text-lg font-semibold rounded-[10px] mb-16'>
-        <div className='flex justify-between mb-2.5 items-center '>
-          <div>남은 시간</div>
-          <div className='text-sm'>00 : {formatSeconds(centiseconds)}</div>
-        </div>
-        <div className='relative h-[5px] w-full rounded-lg bg-[#D4D4D4]'>
-          <div
-            className={`absolute left-0 h-[5px] rounded-lg bg-[#FF595F] `}
-            style={{
-              width: `${formatProgress(centiseconds) * 10}%`,
-            }}
-          />
-        </div>
-      </div>
+      <Countdown
+        seconds={formatSeconds(centiseconds)}
+        progress={formatProgress(centiseconds) * 10}
+      />
       <div className='mb-[14px] text-2xl text-[#FF595F] text-center'>
         목표 시간 : 10초
       </div>
