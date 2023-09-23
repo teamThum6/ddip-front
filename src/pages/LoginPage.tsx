@@ -35,7 +35,11 @@ function LoginPage() {
       >
         <img src='/assets/DDip_red.svg' alt='' />
         <Spacing size={19} />
-        <p className='text-brand font-bold text-[32px]'>문구 문구 문구</p>
+        <p className='text-brand font-bold text-[24px] text-center leading-[29px]'>
+          나눠주는 사람은 즐겁게!
+          <br />
+          갖고 싶은 사람은 치열하게!
+        </p>
         <Spacing size={12} />
         <p className='text-[#C9C9C9] text-[13px] font-medium text-center leading-4'>
           띱의 회원이 되어주세요.
