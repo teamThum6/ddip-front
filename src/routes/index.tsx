@@ -4,6 +4,8 @@ import MainPage from 'pages/MainPage'
 import CreatePage from 'pages/CreatePage'
 import LocationSelectionPage from 'pages/LocationSelectionPage'
 import TimeGamePage from 'pages/TimeGamePage'
+import SuccessPage from 'pages/SuccessPage'
+import FailurePage from 'pages/FailurePage'
 
 const Routes = () => {
   return (
@@ -15,6 +17,8 @@ const Routes = () => {
         path='/create/location-selection'
         element={<LocationSelectionPage />}
       />
+      <Route path='/results/success' element={<SuccessPage />} />
+      <Route path='/results/failure' element={<FailurePage />} />
     </ReactRoutes>
   )
 }
