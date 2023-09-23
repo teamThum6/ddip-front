@@ -1,4 +1,5 @@
 import Section from 'components/pages/Results/Section'
+import ViewKakaoMap from 'components/common/ViewKakaoMap'
 
 const Success = () => {
   return (
@@ -31,7 +32,7 @@ const Success = () => {
               서울특별시 마포구 마포대로 122
             </div>
           </div>
-          <div className='bg-red-400 h-[130px] w-full' />
+          <ViewKakaoMap lat={37.566826} lng={126.978656} />
         </Section>
         <Section title='띱할 시간'>
           <div className='px-2 py-1 font-semibold text-[#FF595F] bg-[#FFE8E3] w-[57px]  rounded-md'>
