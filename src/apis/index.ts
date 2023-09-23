@@ -15,10 +15,12 @@ export const createApi = (): AxiosInstance => {
     }
   )
 
-  const token = ''
-
   customAxios.interceptors.request.use((config) => {
-    config.headers['Authorization'] = `Bearer ${token}`
+    const token = localStorage.getItem('token')
+
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
 
     return config
   })
