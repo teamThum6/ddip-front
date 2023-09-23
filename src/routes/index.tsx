@@ -28,7 +28,7 @@ const Routes = () => {
       <Route path='/results/success' element={<SuccessPage />} />
       <Route path='/results/failure' element={<FailurePage />} />
       <Route path='/games/color-block' element={<ColorGamePage />} />
-      <Route path='/detail' element={<DetailPage />} />
+      <Route path='/detail/:id' element={<DetailPage />} />
     </ReactRoutes>
   )
 }
