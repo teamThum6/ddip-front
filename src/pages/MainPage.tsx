@@ -60,9 +60,13 @@ const MainPage = () => {
           <Spacing size={24} />
 
           <ul className='flex flex-wrap gap-x-4 gap-y-[14px]'>
-            {productList.map((el: any) => (
-              <GameItem el={el} />
-            ))}
+            {productList
+              .filter((el: any) =>
+                selectedCategory ? selectedCategory === el.category_key : 1
+              )
+              .map((el: any) => (
+                <GameItem el={el} />
+              ))}
           </ul>
         </div>
       </div>

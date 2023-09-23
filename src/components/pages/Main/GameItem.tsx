@@ -14,15 +14,32 @@ function GameItem({ el }: any) {
     if (gameType === 2) return 'sharon'
     if (gameType === 4) return 'time'
   }
+  const categoryTypeFilter = (gameType: any) => {
+    if (gameType === 1) return '음식'
+    if (gameType === 2) return '생활'
+    if (gameType === 3) return '의류'
+    if (gameType === 4) return '전자기기'
+    if (gameType === 5) return '사무용품'
+    if (gameType === 6) return '도서'
+  }
 
   return (
     <li
       style={{
         width,
       }}
-      className={classNames('rounded-[25px] overflow-hidden', style.shadow)}
+      className={classNames(
+        'rounded-[25px] overflow-hidden cursor-pointer',
+        style.shadow
+      )}
       onClick={() => {
-        navigate(`/games/${gameTypeFilter(el.game_type)}/${el.product_key}`)
+        if (el.game_type === 4 || el.game_type === 2) {
+          return navigate(
+            `/games/${gameTypeFilter(el.game_type)}/${el.product_key}`
+          )
+        } else {
+          alert('준비중입니다.')
+        }
       }}
     >
       <div
@@ -34,7 +51,7 @@ function GameItem({ el }: any) {
         <img src='/assets/s2.png' className='w-full' alt='' />
       </div>
       <div className='py-[7px] px-[14px] bg-white'>
-        <p className={style.category}>음식</p>
+        <p className={style.category}>{categoryTypeFilter(el.category_key)}</p>
         <p className={style.title}>{el.title}</p>
 
         <Spacing size={20} />
