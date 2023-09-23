@@ -1,11 +1,15 @@
 import { useState } from 'react'
+import { useRecoilValue } from 'recoil'
+import { Link } from 'react-router-dom'
 
+import { locationNameState } from 'store/location'
 import GameList from 'components/pages/Create/GameList'
 import Section from 'components/pages/Create/Section'
 import Participants from 'components/pages/Create/Participants'
 import ImageUploadBox from 'components/pages/Create/ImageUploadBox'
 
 const CreatePage = () => {
+  const locationName = useRecoilValue(locationNameState)
   const [imgFile, setImgFile] = useState<File | null>(null)
   const [participant, setParticipant] = useState([
     false,
@@ -39,9 +43,11 @@ const CreatePage = () => {
         />
       </Section>
       <Section title='거래 희망 장소'>
-        <div className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'>
-          위치추가
-        </div>
+        <Link to='/create/location-selection'>
+          <div className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'>
+            {locationName ? locationName : '위치추가'}
+          </div>
+        </Link>
       </Section>
       <Section title='게임 방식'>
         <div className='flex text-brand'>
@@ -49,7 +55,7 @@ const CreatePage = () => {
           선착순
         </div>
         <div className='w-full h-2' />
-        <div className='overflow-y-auto '>
+        <div className='overflow-y-auto scroll'>
           <GameList />
         </div>
       </Section>
