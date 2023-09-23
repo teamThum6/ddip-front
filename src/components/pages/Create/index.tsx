@@ -7,8 +7,10 @@ import GameList from 'components/pages/Create/GameList'
 import Section from 'components/pages/Create/Section'
 import Participants from 'components/pages/Create/Participants'
 import ImageUploadBox from 'components/pages/Create/ImageUploadBox'
+import CategorySelect from 'components/pages/Main/CategorySelect'
 
 const CreatePage = () => {
+  const [selectedCategory, setSelectedCategory] = useState<number>()
   const locationName = useRecoilValue(locationNameState)
   const [gameType, setGameType] = useState(1)
   const [imgFile, setImgFile] = useState<File | null>(null)
@@ -32,10 +34,14 @@ const CreatePage = () => {
         />
       </Section>
       <Section title='카테고리'>
-        <input
-          className=' px-4 py-3 text-base font-medium border border-[#3A3A3A] border-solid  rounded-lg w-full opacity-50'
-          placeholder='제목'
-        />
+        <CategorySelect value={selectedCategory} onChange={setSelectedCategory}>
+          <CategorySelect.Item value={1}>🍪 음식</CategorySelect.Item>
+          <CategorySelect.Item value={2}>🛁 생활</CategorySelect.Item>
+          <CategorySelect.Item value={3}>👕 의류</CategorySelect.Item>
+          <CategorySelect.Item value={4}>💻 전자기기</CategorySelect.Item>
+          <CategorySelect.Item value={5}>🖋️ 사무용품</CategorySelect.Item>
+          <CategorySelect.Item value={6}>📚 도서</CategorySelect.Item>
+        </CategorySelect>
       </Section>
       <Section title='한 줄 설명'>
         <input
