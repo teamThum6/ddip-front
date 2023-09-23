@@ -3,7 +3,7 @@ import ColorBlock from 'components/pages/Games/ColorBlock/ColorBlock'
 import LabelList from 'components/pages/Games/ColorBlock/LabelList'
 import DefaultLayout from 'layouts/DefaultLayout'
 
-export default function ColorGame() {
+export default function ColorGamePage() {
   const profiles = [
     { name: '이지민', score: 12, profileImg: 'www' },
     { name: '이지금', score: 13, profileImg: 'www' },
@@ -12,7 +12,7 @@ export default function ColorGame() {
   ]
   return (
     <DefaultLayout>
-      <main className='min-h-screen bg-sky-50 p-8'>
+      <main className='h-[100vh] bg-sky-50 p-8'>
         <div className='flex justify-between items-center mb-10'>
           <img src='/assets/color-circle.png' alt='' />
           <PageTitle>
