@@ -7,7 +7,7 @@ const Routes = () => {
   return (
     <ReactRoutes>
       <Route path='/' element={<MainPage />} />
-      <Route path='/games/colorGame' element={<ColorGame />} />
+      <Route path='/games/color-block' element={<ColorGame />} />
     </ReactRoutes>
   )
 }
