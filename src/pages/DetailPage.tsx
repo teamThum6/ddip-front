@@ -1,9 +1,18 @@
+import { fetchProductDetail, fetchProductList } from 'apis/product'
 import Header from 'components/common/Header'
 import PageTitle from 'components/common/pageTilte'
 import ThumbUpList from 'components/pages/Detail/ThumbUpList'
 import DefaultLayout from 'layouts/DefaultLayout'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 
 export default function DetailPage() {
+  const [data, setdata] = useState<any>()
+  console.log('🚀 ~ file: DetailPage.tsx:10 ~ DetailPage ~ data:', data)
+
+  const { id = '' } = useParams()
+  console.log(id)
+
   const product = {
     title: '오리온 마이구미 젤리',
     describtion: '“2+1으로 사서 남은 마이구미 뿌림”',
@@ -18,6 +27,15 @@ export default function DetailPage() {
   }
 
   const users = ['aaaa', 'bbbb', 'ccc', 'dddd', 'eeee']
+
+  async function fetchData() {
+    const respons = await fetchProductDetail(id)
+    setdata(respons)
+  }
+
+  useEffect(() => {
+    fetchData()
+  }, [])
 
   return (
     <DefaultLayout>
