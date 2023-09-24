@@ -17,10 +17,8 @@ const TimeGamePage = () => {
   const [userList, setUserList] = useRecoilState(userListState)
   const [isStart, setIsStart] = useState(false)
 
-  const dsa = new Date().toString()
-
   useEffect(() => {
-    ws.timer_in('timer_in', String(id), dsa)
+    ws.timer_in('timer_in', String(id), localStorage.getItem('nickname')!)
   }, [])
 
   const loadTime = async () => {
