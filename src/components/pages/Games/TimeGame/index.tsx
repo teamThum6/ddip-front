@@ -4,7 +4,13 @@ import useInterval from 'hooks/useInterval'
 import Countdown from 'components/pages/Games/Countdown'
 import ws from 'components/common/MySocket'
 
-const TimeGame = ({ centiseconds, setCentiseconds, time, isStart }: any) => {
+const TimeGame = ({
+  centiseconds,
+  setCentiseconds,
+  time,
+  isStart,
+  id,
+}: any) => {
   const [isRunning, setIsRunning] = useState(true)
 
   useInterval(() => {
@@ -67,7 +73,7 @@ const TimeGame = ({ centiseconds, setCentiseconds, time, isStart }: any) => {
         }`}
         onClick={() => {
           setIsRunning(false)
-          ws.time_check('가', centiseconds, done as () => void)
+          ws.time_check(String(id), centiseconds, done as () => void)
         }}
         disabled={!isStart}
       >
