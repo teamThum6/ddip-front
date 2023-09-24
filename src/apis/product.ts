@@ -32,5 +32,5 @@ export async function fetchProductList() {
 }
 
 export async function fetchProductDetail(id: number) {
-  return await customAxios.get<null, any>(`/api/v1/product/21`)
+  return await customAxios.get<null, any>(`/api/v1/product/${id}`)
 }
