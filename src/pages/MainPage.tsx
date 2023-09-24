@@ -6,10 +6,24 @@ import GameItem from 'components/pages/Main/GameItem'
 import DDip from 'components/pages/Main/DDip'
 import TopRow from 'components/pages/Main/TopRow'
 import Spacing from 'layouts/Spacing'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import * as productApi from 'apis/product'
 
 const MainPage = () => {
   const [selectedCategory, setSelectedCategory] = useState<number>()
+  const [productList, setProductList] = useState<any>()
+
+  const fetchProductList = async () => {
+    const res = await productApi.fetchProductList()
+
+    setProductList(res)
+  }
+
+  useEffect(() => {
+    fetchProductList()
+  }, [])
+
+  if (!productList) return <></>
 
   return (
     <>
@@ -46,10 +60,13 @@ const MainPage = () => {
           <Spacing size={24} />
 
           <ul className='flex flex-wrap gap-x-4 gap-y-[14px]'>
-            <GameItem />
-            <GameItem />
-            <GameItem />
-            <GameItem />
+            {productList
+              .filter((el: any) =>
+                selectedCategory ? selectedCategory === el.category_key : 1
+              )
+              .map((el: any) => (
+                <GameItem el={el} />
+              ))}
           </ul>
         </div>
       </div>

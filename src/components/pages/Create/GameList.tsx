@@ -10,10 +10,10 @@ const GameList = ({ gameType, setGameType }: GameListProps) => {
     <div className='flex space-x-2 w-[432px]'>
       <div
         className={`w-[102px] p-2 border-2 border-dashed ${
-          gameType === 1 && 'border-brand'
+          gameType === 10 && 'border-brand'
         } rounded-lg text-[#D4D4D4] text-center`}
         onClick={() => {
-          setGameType(1)
+          setGameType(10)
         }}
       >
         <img src='/assets/images/random.png' className=' mx-auto' alt='랜덤' />
@@ -24,9 +24,9 @@ const GameList = ({ gameType, setGameType }: GameListProps) => {
         backGroundColor='bg-[#FFF8EA]'
         textColor='text-[#FFA800]'
         icon='/assets/images/flower.png'
-        border={gameType === 2 ? 'border border-solid border-red-400' : ''}
+        border={gameType === 1 ? 'border border-solid border-red-400' : ''}
         action={() => {
-          setGameType(2)
+          setGameType(1)
         }}
       />
       <GameItem
@@ -34,9 +34,9 @@ const GameList = ({ gameType, setGameType }: GameListProps) => {
         backGroundColor='bg-[#F3F8FF]'
         textColor='text-[#6091D6]'
         icon='/assets/images/palate.png'
-        border={gameType === 3 ? 'border border-solid border-red-400' : ''}
+        border={gameType === 2 ? 'border border-solid border-red-400' : ''}
         action={() => {
-          setGameType(3)
+          setGameType(2)
         }}
       />
       <GameItem
@@ -44,9 +44,9 @@ const GameList = ({ gameType, setGameType }: GameListProps) => {
         backGroundColor='bg-[#FFE8E3]'
         textColor='text-[#FF595F]'
         icon='/assets/images/time.png'
-        border={gameType === 4 ? 'border border-solid border-red-400' : ''}
+        border={gameType === 3 ? 'border border-solid border-red-400' : ''}
         action={() => {
-          setGameType(4)
+          setGameType(3)
         }}
       />
     </div>
