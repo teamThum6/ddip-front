@@ -58,7 +58,6 @@ const MainPage = () => {
           </CategorySelect>
 
           <Spacing size={24} />
-
           <ul className='flex flex-wrap gap-x-4 gap-y-[14px]'>
             {productList
               .filter((el: any) =>
