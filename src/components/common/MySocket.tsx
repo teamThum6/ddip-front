@@ -8,7 +8,7 @@ class WebSocket {
   constructor() {
     if (isServer) return
 
-    this.io = io('http://13.239.29.240:8080', {
+    this.io = io('http://localhost:8080', {
       transports: ['websocket'],
       withCredentials: true,
       reconnection: true,

@@ -10,10 +10,6 @@ function GameItem({ el }: any) {
 
   const imageHeight = width * 0.76
 
-  const gameTypeFilter = (gameType: any) => {
-    if (gameType === 1) return 'sharon'
-    if (gameType === 3) return 'time'
-  }
   const categoryTypeFilter = (gameType: any) => {
     if (gameType === 1) return '음식'
     if (gameType === 2) return '생활'
@@ -33,13 +29,7 @@ function GameItem({ el }: any) {
         style.shadow
       )}
       onClick={() => {
-        if (el.game_type === 1 || el.game_type === 3) {
-          return navigate(
-            `/games/${gameTypeFilter(el.game_type)}/${el.product_key}`
-          )
-        } else {
-          alert('준비중입니다.')
-        }
+        navigate(`detail/${el.product_key}`)
       }}
     >
       <div
@@ -48,7 +38,7 @@ function GameItem({ el }: any) {
           height: imageHeight,
         }}
       >
-        <img src='/assets/s2.png' className='w-full' alt='' />
+        <img src={el.image_url} className='w-full' alt='' />
       </div>
       <div className='py-[7px] px-[14px] bg-white'>
         <p className={style.category}>{categoryTypeFilter(el.category_key)}</p>

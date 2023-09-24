@@ -53,6 +53,7 @@ const TimeGamePage = () => {
         setCentiseconds={setCentiseconds}
         time={time}
         isStart={isStart}
+        id={id}
       />
     </>
   )
