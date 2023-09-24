@@ -29,6 +29,7 @@ function LoginPage() {
         })
         .then((res) => {
           localStorage.setItem('token', res.data.access_token)
+          localStorage.setItem('nickname', nickname)
 
           navigate('/', {
             replace: true,
