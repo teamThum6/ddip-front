@@ -6,13 +6,11 @@ import GameResult from 'components/common/GameResult'
 function TimeGameResultPage() {
   const [userList, setUserList] = useRecoilState(userListState)
 
-  if (!userList) return <></>
-
   return (
     <GameResult primeColor='#6091D6' onConfirm={() => console.log('confirm')}>
       <GameResult.Product image='/assets/s1.png' name='오리온 마이구미' />
       <GameResult.RankArea>
-        {userList.map((el: any, index) => (
+        {userList?.map((el: any, index) => (
           <GameResult.Rank
             isMe
             rank={index + 1}
