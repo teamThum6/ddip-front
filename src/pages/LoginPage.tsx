@@ -28,7 +28,10 @@ function LoginPage() {
           profile_url: profile_image ?? null,
         })
         .then((res) => {
-          localStorage.setItem('_token', res.data.access_token)
+          localStorage.setItem(
+            '_token',
+            (res.data.access_token as any).access_token
+          )
           localStorage.setItem('nickname', nickname)
 
           navigate('/', {

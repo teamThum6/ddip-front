@@ -24,7 +24,9 @@ function SharonGamePage() {
 
   const $socket = useRef<Socket | null>(null)
 
-  const $uid = useRef<string>(localStorage.getItem('_token')!)
+  const $uid = useRef<string>(localStorage.getItem('__token')!)
+
+  console.log($uid.current)
 
   const [started, setStarted] = useState(false)
 
