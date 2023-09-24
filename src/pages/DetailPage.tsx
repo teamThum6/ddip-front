@@ -41,9 +41,6 @@ export default function DetailPage() {
         <div className='p-[32px]'>
           <div className='flex justify-between items-center mb-3'>
             <PageTitle>{data.title}</PageTitle>
-            <div className='w-[53px] h-[23px] px-2 py-[3px] bg-rose-100 rounded border border-rose-500 flex-col justify-center items-center gap-2.5 inline-flex'>
-              <div className='text-rose-600 text-xs font-semibold'>경쟁중</div>
-            </div>
           </div>
           <div className='flex justify-between items-center mb-3'>
             <div className='flex gap-1'>
@@ -53,15 +50,6 @@ export default function DetailPage() {
             <div className='flex gap-3'>
               <img src='/assets/time_12x12_gray.svg' alt='게시시간' />
               <p>1분전</p>
-            </div>
-          </div>
-          <div className='flex mb-5'>
-            <div className='bg-red-400 w-10 h-10 rounded-[50%]' />
-            <div className='flex justify-between flex-col'>
-              <p className='my-auto mb-2'>김솔</p>
-              <div className='w-[286px] h-[35px] rounded-r-lg bg-white rounded-bl-lg flex items-center justify-center overflow-y-scroll'>
-                {data.description}
-              </div>
             </div>
           </div>
           <div className='w-auto h-[253px] opacity-50 bg-rose-100 rounded-lg flex flex-col justify-center items-center relative'>
@@ -82,6 +70,7 @@ export default function DetailPage() {
         >
           경쟁 참여하기
         </button>
+        <div className='w-full h-[10px] fixed bottom-0' />
       </main>
     </DefaultLayout>
   )
