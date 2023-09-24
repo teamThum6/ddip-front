@@ -16,8 +16,7 @@ export const createApi = (): AxiosInstance => {
   )
 
   customAxios.interceptors.request.use((config) => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiZXhwIjoxNzEzNTA3ODI3fQ.RAagDZAzHX5vz9sy5WyhIbX1DzP1kfA8Hdd9_A191-I'
+    const token = localStorage.getItem('__token')
 
     if (token) {
       config.headers['Authorization'] = `Bearer ${token}`
