@@ -29,7 +29,7 @@ function LoginPage() {
         })
         .then((res) => {
           localStorage.setItem(
-            '_token',
+            '__token',
             (res.data.access_token as any).access_token
           )
           localStorage.setItem('nickname', nickname)
